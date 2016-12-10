@@ -25,8 +25,8 @@ import { Component } from '@angular/core';
     <nav>
       <a routerLink="/login" routerLinkActive="active">Login</a>
       <a routerLink="/project" routerLinkActive="active">Project</a>
-      <a routerLink="/create-project" routerLinkActive="active">Create Project</a>
-      <a routerLink="/project-detail" routerLinkActive="active">Project Details</a>
+      <a routerLink="/createproject" routerLinkActive="active">Create Project</a>
+      <a routerLink="/projectdetail" routerLinkActive="active">Project Details</a>
     </nav>
   `
 })

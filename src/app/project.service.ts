@@ -17,10 +17,10 @@ import 'rxjs/add/operator/toPromise';
 export class ProjectService {
 
 
-    // private baseUrl = 'http://192.241.209.229/v1/project';
+    private baseUrl = 'http://192.241.209.229/v1/project';
     // private baseUrl = 'https://jsonplaceholder.typicode.com/posts';
   // private baseUrl = 'https://api.myjson.com/bins/yg45';
-    private baseUrl = 'https://api.myjson.com/bins/48trl';
+    // private baseUrl = 'https://api.myjson.com/bins/48trl';
 
 
     constructor(private http: Http) {
