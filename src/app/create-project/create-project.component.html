@@ -1,3 +1,126 @@
-<p>
-  create-project works!
-</p>
+
+   <div class="mainNav">
+      <div class="container">
+      	<div class="row"><!--row-->
+            <div class="brand-logo col-md-2 col-sm-4"><!--Logo-->
+                <a href="javascript:;"><img src="images/logo-nonummy.png" alt="Logo" /></a>
+            </div><!--Logo-->
+            <!--Main Navigation-->
+            <nav class="col-md-8 col-lg-8 col-sm-8 col-xs-10">
+                <ul class="nav nav-pills navbar-right">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation" class="dropdown hidden-xs">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation"><a href="#">Explore</a></li>
+                    <li role="presentation"><a href="#">Your Projects</a></li>
+                </ul>
+            </nav>
+           	<!--Main Navigation-->
+            <!--Loged Avatar-->
+            <div class="col-xs-1 visible-xs searchBtn">
+               <a class="pull-right" href="#">Search</a>
+            </div>
+            <ul class="nav nav-pills col-xs-1 visible-xs mobileOptions"><!--Responsive Menu-->
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="navOptions"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li><a href="#">Drop Down 2</a></li>
+                        <li><a href="#">Drop Down 3</a></li>
+                    </ul>
+                </li>
+            </ul><!--Responsive Menu-->
+            <div class="col-md-2 col-sm-2 memberProfile hidden-sm hidden-xs">
+                <ul class="nav nav-pills pull-left">
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="javascript:;" class="profileImgThumb"><img src="images/profile-avatar.png" alt="Member Photo"/></a>
+            </div>
+            <!--Loged Avatar-->
+	     </div><!--row-->
+      </div>
+   </div>
+   <!--Search Bar-->
+    <div class="searchBar">
+        <div class="container">
+        	<div class="row">
+                <div class="col-lg-1 col-md-1"></div>
+                <div class="col-lg-10 col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-btn"><button class="btn blueBtn searchProjectBtn btn-default" type="button">Interest</button></span>
+                        <input type="text" class="form-control searchInput text-right" placeholder="Search projects">
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-lg-1 col-md-1"></div>
+            </div>
+            <div class="row hidden-xs">
+            	<div class="col-lg-4 col-md-4 hidden-sm"></div>
+                <div class="col-lg-4 col-md-4 col-sm-8">
+                    <ul class="searchAttrs list-inline text-center">
+                    	   <li class="active"><a href="javascript:;">Like</a></li>
+                        <li><a href="javascript:;">Size</a></li>
+                        <li><a href="javascript:;">Date</a></li>
+					      </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4">
+	                <p class="favrouts text-right"><a href="javascript:;">favourites</a></p>
+                </div>
+                <div class="col-lg-1 col-md-1 hidden-sm"></div>
+            </div>
+        </div>
+    </div>
+    <!--Search Bar-->
+    <!-- Mian contents-->
+    <div class="container">
+        <!-- Add Project -->
+        <div class="row addProject"><!--Row-->
+        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            	<h4>New Project</h4>
+            </div>
+            <form>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="form-group">
+                        <label class="sr-only " for="InputProjectTitle">Project Name</label>
+                        <input type="text" class="form-control noRedius" id="InputProjectTitle" placeholder="Project Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="InputProject">Museum, Monuments...</label>
+                        <input type="text" class="form-control noRedius" id="InputProject" placeholder="Museum, Monuments...">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="InputPassword">Description</label>
+                        <textarea class="form-control noRedius" rows="6" placeholder="Description"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-center">
+                    <div class="form-group projectFileImage"
+                    [ngStyle]="{'background-image':'url(' + imgurl + ')'}"
+                    style="background-size: cover; background-repeat: no-repeat; background-position: center center;">
+                      <!-- <img [src]="imgurl" style="width:100%"> -->
+                        <h4>Project Image</h4>
+                        <span class="green-btn btn-file">
+                            Browse <input type='file' (change)="readUrl($event)">
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                	<button type="submit" class="custmBtn blueBtn">Create</button>
+                </div>
+            </form>
+        </div><!--Row-->
+        <!-- Add Project -->
+    </div>
+<!-- Mian contents-->

@@ -1,3 +1,348 @@
-<p>
-  project-detail works!
-</p>
+<div class="mainNav">
+   <div class="container">
+     <div class="row"><!--row-->
+         <div class="brand-logo col-md-2 col-sm-4"><!--Logo-->
+             <a href="homePage.html"><img src="images/logo-nonummy.png" alt="Logo" /></a>
+         </div><!--Logo-->
+         <!--Main Navigation-->
+         <nav class="col-md-8 col-lg-8 col-sm-8 col-xs-10">
+             <ul class="nav nav-pills navbar-right">
+                 <li role="presentation"><a href="shareProject.html">Share</a></li>
+                 <li role="presentation"><a href="explorePage.html">Explore</a></li>
+                 <li role="presentation"><a href="homePage.html">My Projects</a></li>
+             </ul>
+         </nav>
+         <!--Main Navigation-->
+         <!--Loged Avatar-->
+         <div class="col-xs-1 visible-xs searchBtn">
+             <a class="pull-right" href="#">Search</a>
+         </div>
+         <ul class="nav nav-pills col-xs-1 visible-xs mobileOptions"><!--Responsive Menu-->
+             <li role="presentation" class="dropdown">
+                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="navOptions"></span></a>
+                 <ul class="dropdown-menu">
+                     <li><a href="#">Drop Down 1</a></li>
+                     <li><a href="#">Drop Down 2</a></li>
+                     <li><a href="#">Drop Down 3</a></li>
+                 </ul>
+             </li>
+         </ul><!--Responsive Menu-->
+         <div class="col-md-2 col-sm-2 col-lg-2  memberProfile hidden-sm hidden-xs">
+             <a href="javascript:;" class="pull-right profileImgThumb"><img src="images/profile-avatar.png" alt="Member Photo"/></a>
+             <ul class="nav nav-pills pull-right">
+                 <li role="presentation" class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                     <ul class="dropdown-menu">
+                         <li><a href="#">Edward Lear</a></li>
+                         <li><a href="#">Edit Profile</a></li>
+                         <li><a href="#">Sign out</a></li>
+                     </ul>
+                 </li>
+             </ul>
+         </div>
+         <!--Loged Avatar-->
+         </div><!--row-->
+     </div>
+ </div>
+<!--Search Bar-->
+<!-- Mian contents-->
+ <div class="projectPins"
+      oncontextmenu="return false"
+      id="pin-canvas"
+      (mouseup)="detectRightMouseClick($event)">
+
+   <img [src]=sproj.pimgl alt="Loading Project..." class="picWidth" style="Object-fit: contain;"/>
+
+     <!-- {{project.pimg}} -->
+     <!-- {{sproj.pname}} -->
+
+     <span *ngFor="let pin of projpins" class="icon icon-pin-6" style="position: absolute;"
+           [style.left.%]=pin.x [style.top.%]=pin.y [style.color] = pin.color
+           [class.selected]="pin === selectedPin"
+           (mouseenter)="PinHover($event)"
+           (mouseleave)="PinHover($event)"
+           (mouseup)="pinSelect(pin)"
+            id="singlePin">
+           <!-- {{pin.id}} -->
+     </span>
+
+
+
+     <!-- ***************************************************** -->
+     <!-- right panel    -->
+     <div class="rightClickPanel"
+      (mouseenter)="MenuEvent($event)"
+      (mouseleave)="MenuEvent($event)"
+      style="position:absolute; display:none;"
+      [ngStyle]="rightPanelStyle">
+
+      <div class="pinSpecification">
+          <ul>
+              <li><a (click)="save()" class="active" href="javasript:;" onclick='return false;'>Edit</a></li>
+              <li><a href="javasript:;">Lock</a></li>
+              <li><a href="javasript:;" (click)="delete(pin);" onclick="return false;">Delete</a></li>
+          </ul>
+      </div>
+
+     </div>
+     <!-- left panel    -->
+     <div class="leftClickPanel"
+      (mouseenter)="MenuEvent($event)"
+      (mouseleave)="MenuEvent($event)"
+      style="position:absolute; display:none;"
+      [ngStyle]="leftPanelStyle">
+
+      <div class="pinSpecification pinProjectMark">
+         <ul>
+           <li><a href="javasript:;" onclick="return false;" data-toggle="modal" data-target="#static" ><span>&nbsp;</span></a></li>
+           <li><a href="javasript:" onclick="return false;" data-toggle="modal" data-target="#static2"><span class="cameraMovieBg">&nbsp;</span></a></li>
+           <li><a href="javasript:;"><span class="chartBg">&nbsp;</span></a></li>
+           <li><a href="javasript:;"><span class="recrodBg">&nbsp;</span></a></li>
+           <li><a href="javasript:;"><span class="mapMakerBg">&nbsp;</span></a></li>
+           <li><a href="javasript:;">Project</a></li>
+         </ul>
+      </div>
+
+     </div>
+
+
+
+ </div>
+ <!-- projectpins -->
+
+ <!-- image gallery -->
+ <div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="true" style="display: none;">
+   <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+   <div class="modal-body">
+     <p>Would you like to continue with some arbitrary task?</p>
+     <div id="gallery" style="display:none;">
+
+       <img alt="Image 1 Title" src="images/uploadPic/upload-pic-1.jpg"
+         data-image="images/uploadPic/upload-pic-1.jpg"
+         data-description="Image 1 Description">
+
+       <img alt="Image 2 Title" src="images/uploadPic/upload-pic-2.jpg"
+         data-image="images/uploadPic/upload-pic-2.jpg"
+         data-description="Image 2 Description">
+
+       <img alt="Image 3 Title" src="images/uploadPic/upload-pic-3.jpg"
+         data-image="images/uploadPic/upload-pic-3.jpg"
+         data-description="Image 3 Description">
+
+       <img alt="Image 4 Title" src="images/uploadPic/upload-pic-4.jpg"
+         data-image="images/uploadPic/upload-pic-4.jpg"
+         data-description="Image 4 Description">
+
+         <img alt="Image 1 Title" src="images/uploadPic/upload-pic-1.jpg"
+           data-image="images/uploadPic/upload-pic-1.jpg"
+           data-description="Image 1 Description">
+
+         <img alt="Image 2 Title" src="images/uploadPic/upload-pic-2.jpg"
+           data-image="images/uploadPic/upload-pic-2.jpg"
+           data-description="Image 2 Description">
+
+         <img alt="Image 3 Title" src="images/uploadPic/upload-pic-3.jpg"
+           data-image="images/uploadPic/upload-pic-3.jpg"
+           data-description="Image 3 Description">
+
+         <img alt="Image 4 Title" src="images/uploadPic/upload-pic-4.jpg"
+           data-image="images/uploadPic/upload-pic-4.jpg"
+           data-description="Image 4 Description">
+
+           <img alt="Image 1 Title" src="images/uploadPic/upload-pic-1.jpg"
+             data-image="images/uploadPic/upload-pic-1.jpg"
+             data-description="Image 1 Description">
+
+           <img alt="Image 2 Title" src="images/uploadPic/upload-pic-2.jpg"
+             data-image="images/uploadPic/upload-pic-2.jpg"
+             data-description="Image 2 Description">
+
+           <img alt="Image 3 Title" src="images/uploadPic/upload-pic-3.jpg"
+             data-image="images/uploadPic/upload-pic-3.jpg"
+             data-description="Image 3 Description">
+
+           <img alt="Image 4 Title" src="images/uploadPic/upload-pic-4.jpg"
+             data-image="images/uploadPic/upload-pic-4.jpg"
+             data-description="Image 4 Description">
+
+
+     </div>
+   </div>
+   <div class="modal-footer">
+     <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+     <button type="button" data-dismiss="modal" class="btn btn-primary">Continue Task</button>
+   </div>
+ </div>
+ <!-- end image galler -->
+
+ <!-- video gallery -->
+ <div id="static2" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="true" style="display: none;">
+   <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+   <div class="modal-body">
+     <p>this is video gallery</p>
+     <div id="videogallery" style="display:none;">
+
+     <div data-type="youtube"
+        data-videoid="M2-sponIRGM"
+        data-title="GoPro Demo"
+        data-description="by Go Pro"></div>
+
+     <div data-type="youtube"
+         data-videoid="7SDrjwtfKMk"
+         data-title="GoPro Demo"
+         data-description="by Go Pro"></div>
+
+     <div data-type="youtube"
+         data-videoid="qOgZJJmLfhA"
+         data-title="GoPro Demo"
+         data-description="by Go Pro"></div>
+
+     <div data-type="youtube"
+         data-videoid="jfqKObTVyHE"
+         data-title="GoPro Demo"
+         data-description="by Go Pro"></div>
+
+     <div data-type="youtube"
+        data-videoid="hzb6uI7xRA8"
+        data-title="GoPro Demo"
+        data-description="by Go Pro"></div>
+
+
+      <div data-type="youtube"
+         data-videoid="KaT9lEyqzU0"
+         data-title="GoPro Demo"
+         data-description="by Go Pro"></div>
+
+      <div data-type="youtube"
+          data-videoid="ssc5vRxvuk4"
+          data-title="GoPro Demo"
+          data-description="by Go Pro"></div>
+
+
+
+      <div data-type="youtube"
+           data-videoid="jDgeABMDuiU"
+           data-title="GoPro Demo"
+           data-description="by Go Pro"></div>
+
+
+      <div data-type="youtube"
+          data-videoid="UOeZCNIAUvc"
+          data-title="GoPro Demo"
+          data-description="by Go Pro"></div>
+
+      <div data-type="youtube"
+           data-videoid="0pHFJELNKZk"
+           data-title="GoPro Demo"
+           data-description="by Go Pro"></div>
+
+
+      <!-- audio file       -->
+      <img alt="Html5 Video"
+      src="images/uploadPic/upload-pic-2.jpg"
+      data-type="html5video"
+      data-image="images/uploadPic/upload-pic-2.jpg"
+      data-videomp4="https://www.dropbox.com/s/okdhnuwk4es97ea/khayaldropbox.mp3?dl=1"
+      data-description="This is html5 6666666666 audio demo played by mediaelement2 player">
+
+
+
+      <img alt="Html5 Video"
+      src="images/uploadPic/upload-pic-3.jpg"
+      data-type="html5video"
+      data-image="images/uploadPic/upload-pic-3.jpg"
+      data-videomp4="https://www.dropbox.com/s/3m375bb6y4acf4e/sawaal.mp4?dl=1"
+      data-description="This is html5 audio demo played by mediaelement2 player">
+
+      <!-- <img alt="Html5 Video"
+      src="images/uploadPic/upload-pic-4.jpg"
+      data-type="html5video"
+      data-image="images/uploadPic/upload-pic-4.jpg"
+      data-videomp4="years.ogg"
+      data-description="This is html5 audio demo played by mediaelement2 player"> -->
+
+
+
+
+       <!-- <div data-type="vimeo"
+          data-videoid="112361221"
+          data-thumb="thumbs-preview/image01.jpg"
+          data-title="Solus"
+          data-description="Solus movie"></div>
+
+       <div data-type="html5video"
+          data-image="http://video-js.zencoder.com/oceans-clip.png"
+          data-videoogv="http://video-js.zencoder.com/oceans-clip.ogv"
+          data-videowebm="http://video-js.zencoder.com/oceans-clip.webm"
+          data-videomp4="http://video-js.zencoder.com/oceans-clip.mp4"
+            data-title="Birds"
+            data-description="html5 video description"></div>
+
+       <div data-type="wistia"
+          data-videoid="o9q402a8ns"
+          data-title="DIY Video Studio"
+          data-description="wistia video description"></div> -->
+
+     </div>
+   </div>
+   <div class="modal-footer">
+     <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
+     <button type="button" data-dismiss="modal" class="btn btn-primary">Continue Task</button>
+   </div>
+ </div>
+
+
+ <!-- end video gallery -->
+
+
+
+
+
+ <!-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#static">Open Modal</button> -->
+
+ <!-- <div id="gallery" style="display:none;">
+
+   <img alt="Image 1 Title" src="images/uploadPic/upload-pic-1.jpg"
+     data-image="images/uploadPic/upload-pic-1.jpg"
+     data-description="Image 1 Description">
+
+   <img alt="Image 2 Title" src="images/uploadPic/upload-pic-2.jpg"
+     data-image="images/uploadPic/upload-pic-2.jpg"
+     data-description="Image 2 Description">
+
+   <img alt="Image 1 Title" src="images/uploadPic/upload-pic-3.jpg"
+     data-image="images/uploadPic/upload-pic-3.jpg"
+     data-description="Image 3 Description">
+
+   <img alt="Image 2 Title" src="images/uploadPic/upload-pic-4.jpg"
+     data-image="images/uploadPic/upload-pic-4.jpg"
+     data-description="Image 4 Description">
+
+ </div> -->
+
+ <!-- <br><br><br>
+ <video width="512" height="288" controls="controls">
+ <source src="https://www.dropbox.com/s/3m375bb6y4acf4e/sawaal.mp4?dl=1" type="video/mp4" />
+ </video> -->
+ <!-- <br><br><br>
+ <audio controls>
+   <source src="khayal.mp3" type="audio/mpeg">
+ Your browser does not support the audio element.
+ </audio> -->
+
+ <!-- file upload program -->
+ <h2>HTML5 File Upload Progress Bar Tutorial</h2>
+ <form id="upload_form" enctype="multipart/form-data" method="post">
+   <input type="file" name="file1" id="file1"><br>
+   <input type="button" value="Upload File" onclick="uploadFile()">
+   <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+   <h3 id="status"></h3>
+   <p id="loaded_n_total"></p>
+ </form>
+
+
+ <div class="container">
+     <!-- Add Project -->
+     <!-- Add Project -->
+ </div>
+<!-- Mian contents-->

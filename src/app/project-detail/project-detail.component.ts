@@ -1,15 +1,312 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
+//
+// @Component({
+//   selector: 'app-project-detail',
+//   templateUrl: './project-detail.component.html',
+//   styleUrls: ['./project-detail.component.css']
+// })
+// export class ProjectDetailComponent implements OnInit {
+//
+//   constructor() { }
+//
+//   ngOnInit() {
+//   }
+//
+// }
+
+import 'rxjs/add/operator/switchMap';
+import { Component, ViewChild, ElementRef, Renderer, OnInit  } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location }               from '@angular/common';
+import { Pin } from '../pin';
+import { PinService } from '../pin.service';
+import { Project } from '../project';
+import { ProjectService } from '../project.service';
+// import {ModalModule} from "ng2-modal";
+
+
 
 @Component({
-  selector: 'app-project-detail',
   templateUrl: './project-detail.component.html',
-  styleUrls: ['./project-detail.component.css']
+  styles: [`
+  .selected {
+    text-shadow: 0 0 8px red;
+  }
+  `],
+  providers: [PinService, ProjectService]
+
 })
+
 export class ProjectDetailComponent implements OnInit {
 
-  constructor() { }
+  //***************** mouse event handeling variables *********************
+  rightPanelStyle: Object = {};
+  leftPanelStyle: Object = {};
 
-  ngOnInit() {
+  RightMenuActive = false;
+  LeftMenuActive = false;
+  OutOfMenu = true;
+  // OutLeftMenu = false;
+  OnPin = false;
+
+  leftX = 0;
+  topY = 0;
+
+  // **************************Pin related variable/property declarations****************
+  projpins: Pin[] = []; //project pins to display
+  projpin = new Pin; //new project pin to be created on right click
+  pin: Pin; //declaring a pin property
+  // pin2 = new Pin; //declaring a pin property
+  pin1 = new Pin; // used to update the pin
+  selectedPin: Pin; // for the pin which is elected on click
+
+ //**************************Project related variable/property declarations****************
+
+  pid : number;
+  // project = new Project;
+  // userproj: Project[] = []; //project pins to display
+  sproj = new Project;
+
+  //***************************** functions below *************************************
+
+  constructor(private pinService: PinService, private projectService: ProjectService,
+     private el:ElementRef, private route: ActivatedRoute, private location: Location) {
+
+      this.pid = route.snapshot.params['pid'];
+
+
+
+    }//class constructor
+
+  // selecting a pin and holding it in selectedPin
+  pinSelect(pin: Pin): void {
+    this.selectedPin = pin;
+    console.log("Pin id is :" + this.selectedPin.id +
+           ", name :" + this.selectedPin.name +
+           ", x :" + this.selectedPin.x +
+           ", y :" + this.selectedPin.y +
+           ", color :" + this.selectedPin.color );
+
+    // alert("Pin id is :" + this.selectedPin.id +
+    //       ", name :" + this.selectedPin.name +
+    //       ", x :" + this.selectedPin.x +
+    //       ", y :" + this.selectedPin.y +
+    //       ", color :" + this.selectedPin.color );
   }
 
-}
+  // get all pins of a project
+  getPins(): void {
+    this.pinService.getPins().then(pins => this.projpins = pins);
+  }
+
+  // adding a pin into the project
+  addPin(name: string, x:number, y:number, color:string): void {
+    // name = name.trim();
+    // if (!name) { return; }
+    this.pinService.create(name, x, y, color)
+      .then(projpin => {
+        this.projpins.push(this.projpin);
+        // this.projpin = null;
+      });
+  }
+
+  //updating a pin and then saving its data
+  save(): void {
+    this.pin1.id = 8;
+    this.pin1.name = "new";
+    this.pin1.x = 50;
+    this.pin1.y = 50;
+    this.pin1.color = "white";
+
+    this.pinService.update(this.pin1)
+       .then(() => this.goBack());
+  }
+
+  //go back function
+  goBack(): void {
+    this.location.back();
+  }
+  // delete pin function
+  delete(pin: Pin): void {
+    if(pin){
+
+    }else{
+      pin = this.selectedPin;
+    }
+
+    this.pinService
+        .delete(pin.id)
+        .then(() => {
+          this.projpins = this.projpins.filter(h => h !== pin);
+          if (this.selectedPin === pin) { this.selectedPin = null; }
+        });
+
+    this.rightPanelStyle = {'display':'none'};
+    this.RightMenuActive = false;
+  }
+
+  // ngOnInit function. call any functions inside to load  when the view of component is called first time
+  ngOnInit(): void {
+    //first get projectdetails from the url parameter
+    this.route.params
+      .switchMap((params: Params) => this.projectService.getProject(+params['pid']))
+      .subscribe(project => this.sproj = project);
+
+    //   this.route.params
+    //  .switchMap((params: Params) => this.pinService.getPin(+params['id']))
+    //  .subscribe(pin => this.pin2 = pin);
+
+
+
+      // console.log("user projects:" + this.userproj[1].id );
+      // console.log("project is :" + this.project.id);
+      // console.log("pin is :" + this.pin2.id);
+
+
+    //after project detail, get this project pins
+    this.getPins(); //get all pins of the  project to display
+
+
+
+    // this.route.params
+    //   .switchMap((params: Params) => this.pinService.getPin(+params['id']))
+    //   .subscribe(pin => this.pin = pin);
+  }//ngOnIt
+
+  // pinhover event to control the canvas of the pins
+  PinHover($event){
+
+    if($event.type == "mouseenter"){
+      this.OnPin = true;
+      console.log("on the pin - setting value to true - de-activate canvas clicks");
+    }else{
+      this.OnPin = false;
+      console.log("outside of the pin - setting value to false - activate canvas clicks");
+    }
+
+  }
+
+  // menuhover event to control the menu and the canvas behind
+  MenuEvent($event){
+    if($event.type == "mouseenter"){
+      this.OutOfMenu = false;
+      console.log("inside menu div - setting value to false - do not close the menu when inside");
+    }else{
+      this.OutOfMenu = true;
+      console.log("outside menu div - setting value to true - close the menu when outside");
+    }
+  }
+
+  detectRightMouseClick($event) {
+    // alert("function called");
+
+    var canvasXY = document.getElementById('pin-canvas');
+    var globalPosRect = canvasXY.getBoundingClientRect();
+
+    var singlepin = document.getElementById('singlePin');
+    var pinRect = singlepin.getBoundingClientRect();
+    var pinWidth =  (pinRect.width);
+    var pinHeight = (pinRect.height);
+
+    console.log("Pin width...:" + pinWidth + " --- Pin Height..."+ pinHeight );
+
+
+    var leftoffset = globalPosRect.left;
+    var topoffset = globalPosRect.top;
+
+    // var box2TextRectangle = box2.getBoundingClientRect();
+    // needed for IE8
+    var canvasWidth =  (globalPosRect.width ? globalPosRect.width : (globalPosRect.right-globalPosRect.left));
+    var canvasHeight = (globalPosRect.height ? globalPosRect.height : (globalPosRect.bottom-globalPosRect.top));
+
+    console.log("div total width.:", canvasWidth);
+    console.log("div total height.:", canvasHeight);
+    console.log("div left pos.:", leftoffset);
+    console.log("div top pos.:", topoffset);
+
+    //pin canvas div offset adjustment according to the  dom
+    this.leftX = $event.clientX - leftoffset;
+    this.topY = $event.clientY - topoffset;
+
+    //pin offset adjustment according to the pin height and width
+    this.leftX = this.leftX - (pinWidth/2) + 3;
+    this.topY = this.topY - pinHeight + 5;
+
+    // pixel to percentage conversions
+    var percentX = (this.leftX / canvasWidth) * 100;
+    var percentY = (this.topY / canvasHeight) * 100;
+
+
+    console.log('percentX ---' + percentX);
+    console.log('percentY ---' + percentY);
+
+    console.log('mouse coordinates X---' + $event.clientX);
+    console.log('mouse coordinates Y---' + $event.clientY);
+
+    console.log('leftX---' + this.leftX);
+    console.log('topY---' + this.topY);
+
+
+
+    if(!this.OnPin){
+        //drop pin
+        if($event.which === 3 && this.RightMenuActive === false && this.LeftMenuActive === false) {
+            this.selectedPin = null;  //setting the selectedPin to null if not clicked on pin
+            this.addPin("Pin100",percentX,percentY,"black");
+            // this.projpins = this.projpins.slice();
+            this.getPins();
+            // this.projpins.push("Pin100",this.leftX,this.topY,"black");
+            // this.projpins.push(this.leftX,this.topY,"black");
+            // this.projpin.name = 'Pin100';
+            // this.projpin.x =this.leftX;
+            // this.projpin.y = this.topY;
+            // this.projpin.color ="black";
+            //
+            // this.projpins.push(this.projpin);
+
+            console.log('projpins=',this.projpins);
+
+            // this.rightPanelStyle = {'display':'block','left':percentX + '%','top':percentY + '%'};
+            // this.RightMenuActive = true;
+            return false;
+        }
+        else{
+
+            if(this.OutOfMenu){
+                this.selectedPin = null;  //setting the selectedPin to null if not clicked on pin
+                this.rightPanelStyle = {'display':'none'};
+                this.leftPanelStyle = {'display':'none'};
+                this.RightMenuActive = false;
+                this.LeftMenuActive = false;
+                return false;
+            }
+
+            return false;
+        }//else
+
+    }else{
+      this.rightPanelStyle = {'display':'none'};
+      this.leftPanelStyle = {'display':'none'};
+      this.RightMenuActive = false;
+      this.LeftMenuActive = false;
+
+      if($event.which === 3) {
+          this.rightPanelStyle = {'display':'block','left':percentX + '%','top':percentY + '%'};
+          this.RightMenuActive = true;
+          return false;
+      }else{
+        if($event.which === 1) {
+            this.leftPanelStyle = {'display':'block','left':percentX + '%','top':percentY + '%'};
+            this.LeftMenuActive = true;
+            return false;
+        }
+
+      }
+
+    }
+
+  }//end detectRightMouseClick function bracket
+
+
+
+}// end of class

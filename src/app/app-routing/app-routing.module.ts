@@ -27,7 +27,7 @@ import { ProjectDetailComponent } from '../project-detail/project-detail.compone
       { path: 'login', component: LoginComponent },
       { path: 'project', component: ProjectComponent },
       { path: 'createproject', component: CreateProjectComponent },
-      { path: 'projectdetail', component: ProjectDetailComponent }
+      { path: 'project-detail/:pid', component: ProjectDetailComponent }
 
     ])
   ],

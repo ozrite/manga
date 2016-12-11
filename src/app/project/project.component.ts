@@ -43,12 +43,7 @@ export class ProjectComponent implements OnInit {
       () => console.log('done loading projects')
     );
 
-}
+  }
 
 
-
-
-
-
-
-}
+}// end class

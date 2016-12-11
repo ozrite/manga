@@ -16,6 +16,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/timer';
+import { Project } from './project';
 
 
 @Injectable()
@@ -36,6 +37,12 @@ export class ProjectService {
         // return this.http.get(this.baseUrl)
         //     .toPromise()
         //     .then(response => response.json());
+    }
+
+    //gets a single project
+    getProject(id: number)  { // fix the link and pass the id to catch the single project later
+      return this.http.get(this.baseUrl).map((res:Response) => res.json());
+
     }
 
     createProject(proj) {
