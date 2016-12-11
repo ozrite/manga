@@ -1,3 +1,132 @@
-<p>
-  project works!
-</p>
+
+   <div class="mainNav">
+      <div class="container">
+      	<div class="row"><!--row-->
+            <div class="brand-logo col-md-2 col-sm-4"><!--Logo-->
+                <a href="javascript:;"><img src="images/logo-nonummy.png" alt="Logo" /></a>
+            </div><!--Logo-->
+            <!--Main Navigation-->
+            <nav class="col-md-8 col-lg-8 col-sm-8 col-xs-10">
+                <ul class="nav nav-pills navbar-right">
+                    <li role="presentation" class="active"><a href="#">Home</a></li>
+                    <li role="presentation" class="dropdown hidden-xs">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Share <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                        </ul>
+                    </li>
+                    <li role="presentation"><a href="#">Explore</a></li>
+                    <li role="presentation"><a href="#">Your Projects</a></li>
+                </ul>
+            </nav>
+           	<!--Main Navigation-->
+            <!--Loged Avatar-->
+            <div class="col-xs-1 visible-xs searchBtn">
+               <a class="pull-right" href="#">Search</a>
+            </div>
+            <ul class="nav nav-pills col-xs-1 visible-xs mobileOptions"><!--Responsive Menu-->
+                <li role="presentation" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><span class="navOptions"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Drop Down 1</a></li>
+                        <li><a href="#">Drop Down 2</a></li>
+                        <li><a href="#">Drop Down 3</a></li>
+                    </ul>
+                </li>
+            </ul><!--Responsive Menu-->
+            <div class="col-md-2 col-sm-2 memberProfile hidden-sm hidden-xs">
+                <ul class="nav nav-pills pull-left">
+                    <li role="presentation" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Drop Down 1</a></li>
+                            <li><a href="#">Drop Down 2</a></li>
+                            <li><a href="#">Drop Down 3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <a href="javascript:;" class="profileImgThumb"><img src="images/profile-avatar.png" alt="Member Photo"/></a>
+            </div>
+            <!--Loged Avatar-->
+	     </div><!--row-->
+      </div>
+   </div>
+   <!--Search Bar-->
+    <div class="searchBar">
+        <div class="container">
+        	<div class="row">
+                <div class="col-lg-1 col-md-1"></div>
+                <div class="col-lg-10 col-md-10">
+                    <div class="input-group">
+                        <span class="input-group-btn"><button class="btn blueBtn searchProjectBtn btn-default" type="button">Interest</button></span>
+                        <input type="text" class="form-control searchInput text-right" placeholder="Search projects">
+                    </div><!-- /input-group -->
+                </div>
+                <div class="col-lg-1 col-md-1"></div>
+            </div>
+            <div class="row hidden-xs">
+            	<div class="col-lg-4 col-md-4 hidden-sm"></div>
+                <div class="col-lg-4 col-md-4 col-sm-8">
+                    <ul class="searchAttrs list-inline text-center">
+                    	   <li class="active"><a href="javascript:;">Like</a></li>
+                        <li><a href="javascript:;">Size</a></li>
+                        <li><a href="javascript:;">Date</a></li>
+					      </ul>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-4">
+	                <p class="favrouts text-right"><a href="javascript:;">favourites</a></p>
+                </div>
+                <div class="col-lg-1 col-md-1 hidden-sm"></div>
+            </div>
+        </div>
+    </div>
+    <!--Search Bar-->
+    <!-- Mian contents-->
+    <div class="container">
+    	<div class="createBtns">
+        	<ul class="list-inline">
+            	<li><a class="custmBtn blueBtn" href="javascript:;">Create Project</a></li>
+                <li><a class="custmBtn greenBtn" href="javascript:;">Create Group</a></li>
+            </ul>
+        </div>
+        <!-- Project Listing -->
+        <div class="row projectListing"><!--Row-->
+
+        	<!-- One Item-->
+            <div *ngFor="let proj of userProjects?.data" class="col-lg-4 col-md-4 projectItem">
+            	<div class="itemBoundry">
+                    <div class="projectImg">
+                        <a [routerLink]="['/project-detail', proj.id]"><img src='http://lorempixel.com/400/250/city/1' alt="Place Name" /></a>
+                    </div>
+                    <div class="projectDesc">
+                        <h2 class="projTitle"><a [routerLink]="['/project-detail', proj.id]">{{proj.name}}</a></h2>
+                        <p class="projText">{{proj.description | truncate:80 }}</p>
+                    </div>
+                    <div class="memberAssos">
+                       <div class="row">
+                           <div class="col-lg-9 col-md-9 col-sm-10 col-xs-10">
+                               <div class="memberImg">
+                                   <img src="images/profile-avatar.png" alt="Member Name" />
+                               </div>
+                               <div class="memberDesc">
+                                   <p class="memberTitle">By Lorem ipsum. from USA </p>
+                                   <p class="date">August 11, 2016</p>
+                               </div>
+                           </div>
+                           <div class="col-lg-3 col-md-3 col-sm-2 col-xm-2 text-right">
+                               <p class="actionBtns"><span class="totalLikes">54</span><span class="likeIco ico"><a href="#">&nbsp;</a></span></p>
+                               <p class="actionBtns"><span class="bookmarkIco ico"><a class="marked" href="#">&nbsp;</a></span></p> <!-- "marked" class to show it is bookmarked -->
+                           </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <!-- One Item-->
+
+
+        </div><!--Row-->
+        <!-- Project Listing -->
+    </div>
+<!-- Mian contents-->

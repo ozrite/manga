@@ -7,8 +7,111 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
+
+  <!-- imports starts from under this line -->
+  <!--Begin Template css / java/ jquery includes -->
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
+  <link href="styles/styles.css" rel="stylesheet" type="text/css" />
+  <link href="styles/pins-styles.css" rel="stylesheet" type="text/css" />
+  <!-- <script type="text/javascript" src="js/jquery-1.9.1.js"></script> -->
+  <!-- for unit gallery -->
+  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+  <script type='text/javascript' src='unitegallery/dist/js/unitegallery.min.js'></script>
+  <script src='unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js' type='text/javascript'></script>
+
+  <link rel='stylesheet' href='unitegallery/dist/css/unite-gallery.css' type='text/css' />
+  <script type='text/javascript' src='unitegallery/dist/themes/default/ug-theme-default.js'></script>
+  <link rel='stylesheet' href='unitegallery/dist/themes/default/ug-theme-default.css' type='text/css' />
+
+
+
+
+  <script type="text/javascript" src="js/script.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!--End Template css / java/ jquery includes -->
+
+  <script type="text/javascript">
+
+        jQuery(document).ready(function(){
+          jQuery("#gallery").unitegallery({
+            gallery_theme: "tilesgrid",
+            tile_enable_icons:false,
+            tile_width: 118,						//tile width
+            tile_height: 100,						//tile height
+            tile_enable_border:false,
+
+          });
+
+
+
+          jQuery("#videogallery").unitegallery({
+            gallery_theme: "tilesgrid",
+            // tile_enable_icons:false,
+            tile_width: 118,						//tile width
+            tile_height: 100,						//tile height
+            tile_enable_border:false,
+
+          });
+        });
+  </script>
+
+  <script>
+    /* Script written by Adam Khoury @ DevelopPHP.com */
+    /* Video Tutorial: http://www.youtube.com/watch?v=EraNFJiY0Eg */
+    function _(el){
+      return document.getElementById(el);
+    }
+    function uploadFile(){
+      var file = _("file1").files[0];
+      alert(file.name+" | "+file.size+" | "+file.type);
+      var formdata = new FormData();
+      formdata.append("file1", file);
+      var xhr = new XMLHttpRequest();
+      xhr.upload.addEventListener("progress", progressHandler, false);
+      xhr.addEventListener("load", completeHandler, false);
+      xhr.addEventListener("error", errorHandler, false);
+      xhr.addEventListener("abort", abortHandler, false);
+
+      xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
+      xhr.setRequestHeader('Authorization', 'Bearer ' + 'qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L');
+      xhr.setRequestHeader('Content-Type', 'application/octet-stream');
+      xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
+        path: '/' +  file.name,
+        mode: 'add',
+        autorename: true,
+        mute: false
+      }));
+
+      xhr.send(file);
+      // ajax.open("POST", "file_upload_parser.php");
+      // ajax.send(formdata);
+    }
+    function progressHandler(event){
+      _("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+      var percent = (event.loaded / event.total) * 100;
+      _("progressBar").value = Math.round(percent);
+      _("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+    }
+    function completeHandler(event){
+      _("status").innerHTML = event.target.responseText;
+      _("progressBar").value = 0;
+    }
+    function errorHandler(event){
+      _("status").innerHTML = "Upload Failed";
+    }
+    function abortHandler(event){
+      _("status").innerHTML = "Upload Aborted";
+    }
+  </script>
+
+  <script>
+    System.import('app')
+          .catch(function(err){ console.error(err); });
+  </script>
+
+  </head>
+
+  <body>
   <app-root>Loading...</app-root>
-</body>
-</html>
+  </body>
+  </html>
