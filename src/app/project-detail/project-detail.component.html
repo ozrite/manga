@@ -60,7 +60,7 @@
      <!-- {{project.pimg}} -->
      <!-- {{sproj.pname}} -->
      <!-- userProjects?.data -->
-     <span *ngFor="let pin of projpins?.data" class="icon icon-pin-6" style="position: absolute;"
+     <span *ngFor="let pin of projpins?.data" class="icon icon-pin-1" style="position: absolute;"
            [style.left.%]=pin.pinx [style.top.%]=pin.piny [style.color]=pin.color
            [class.selected]="pin === selectedPin"
            (mouseenter)="PinHover($event)"
@@ -83,7 +83,7 @@
       <div class="pinSpecification">
           <ul>
               <li><a (click)="save()" class="active" href="javasript:;" onclick='return false;'>Edit</a></li>
-              <li><a href="javasript:;">Lock</a></li>
+              <li><a href="javasript:;" onclick='return false;'>Lock</a></li>
               <li><a href="javasript:;" (click)="delete(pin);" onclick="return false;">Delete</a></li>
           </ul>
       </div>

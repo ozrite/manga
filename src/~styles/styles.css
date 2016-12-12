@@ -413,15 +413,12 @@ hr.Sep{
 	padding:4% 0%;
 	overflow:hidden;
 }
-#static .addProject{
-	padding:2% 0 0 0;
-}
 .noteUpgrade{
 	font-size:20px;
 	padding-bottom:2%;
 }
 .addProject h4{
-	margin-bottom: 1%;
+	margin-bottom: 2%;
 	font-weight:bold;
 	color:#47697e;
 }
@@ -648,18 +645,12 @@ input#toggle[type=checkbox]{
 /*--------------Upload Image Contents-----------------*/
 .mainBkPic{
 	background-image:url(../images/background-upload-image.jpg);
-	height:500px;
 }
 .uploadProject{
 	background-color:rgba(255,255,255,0.90);
 	overflow:hidden;
 	position:relative;
 	padding:2% 0%;
-	width:85%;
-	margin:0 auto;
-}
-#static .uploadProject{
-	padding-bottom:1%;
 }
 .uploadProject h4{
 	text-transform:uppercase;
@@ -685,26 +676,12 @@ input#toggle[type=checkbox]{
 .uploadMainBorder{
 	border-bottom:2px solid #d0d8de;
 	border-top:2px solid #d0d8de;
-	margin-bottom:1%;
+	margin-bottom:2%;
 	overflow:hidden;
 	padding:2%;
 	clear:both;
 	padding-bottom:0px;
-	height: 390px;
-	overflow-y: scroll;
 }
-#customScroll::-webkit-scrollbar-track{
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
-}
-#customScroll::-webkit-scrollbar{
-	width: 6px;
-	background-color: #F5F5F5;
-}
-#customScroll::-webkit-scrollbar-thumb{
-	background-color: #c1c1c1;
-}
-
 .uploadIamges{
 	position:relative;
 	margin-bottom:2%;
@@ -712,21 +689,14 @@ input#toggle[type=checkbox]{
 	width:10.2%;
 	float:left;
 }
-.uploadIamges .mediaImg{
-	overflow:hidden;
-	height:100px;
-}
 .uploadIamges img{
 	width:100%;
-}
-.uploadLink.list-inline > li{
-	padding-right: 23px;
 }
 .uploadIamges.last{
 	margin-right:0%;
 }
 .uploadIamges.selectPic{
-	outline:3px solid #62bb9d;
+	border:3px solid #62bb9d;
 }
 .uploadIamges.selectPic:after{
 	background-image:url(../images/icon-select.png);
@@ -748,13 +718,6 @@ input#toggle[type=checkbox]{
 	width:75px;
     left:18%;
 	top:16%;
-}
-.mediaMainWrapper{
-	position:fixed;
-	top:10px;
-	left:10px;
-	z-index:1000;
-	width:100%;
 }
 /*--------------Upload Image Contents-----------------*/
 /*--------------Recording Contents-----------------*/
@@ -869,7 +832,7 @@ input#toggle[type=checkbox]{
 .footerLink ul li:first-child{
 	text-transform:uppercase;
 	padding-bottom:15px;
-
+	
 }
 .footerLink ul li a{
 	color:#464646;
@@ -1326,7 +1289,7 @@ th {
 }
 .pinOne.pinTwo{
 	left: 47%;
-    top: 40%;
+    top: 25%;
 }
 .pinOne.pinThree{
     left:38%;
@@ -1360,6 +1323,8 @@ th {
 .pinSpecification{
 	background:#85d0b2;
 	position:relative;
+	margin-top:6px;
+	float:right;
 }
 .pinSpecification:before{
 	right:100%;
@@ -1377,21 +1342,6 @@ th {
 }
 .pinProjectMark:before{
 	border-right-color:#000;
-}
-.pinSpecification.menuOnLeft:before{
-	border-right-color:transparent;
-	border-left-color:#000;
-	left:100%;
-}
-.pinSpecification.menuOnLeft{
-	right:100%;
-}
-.pinSpecification .tabs{
-	display:none;
-}
-.pinSpecification .tabs.openUp{
-	position:absolute;
-	bottom:100%;
 }
 .pinSpecification ul{
 	background-color:#85d0b2;
@@ -1549,7 +1499,6 @@ ul.pinShapPnl li a.active, ul.pinRecordPnl li a.active{
 }
 .locationPinsSave ul li{
 	border-right:1px solid #62bb9d;
-	width:50%;
 }
 .locationPinsSave ul li a {
 	padding:2px 50.5px;
@@ -1781,6 +1730,7 @@ and (max-width:1000px) {
 		min-height:213px;
 	}
 	.entirePnl.landingPagePnl{
+		*min-height:627px;
 		min-height:568px;
 	}
 	.entireVideoPnl iframe {
@@ -1824,9 +1774,6 @@ and (max-width:1000px) {
 	}
 	.frontPagePnl .landTextPnl p{
 		margin-top:15px;
-	}
-	.uploadIamges .mediaImg{
-		height:auto;
 	}
 }
 @media (min-width: 768px){
