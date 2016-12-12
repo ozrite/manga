@@ -51,13 +51,17 @@
       id="pin-canvas"
       (mouseup)="detectRightMouseClick($event)">
 
-   <img [src]=sproj.pimgl alt="Loading Project..." class="picWidth" style="Object-fit: contain;"/>
+  <!-- <span "let proj of sproj?.data"> -->
+   <img [src]=sproj?.data.imagePath alt="Loading Project..." class="picWidth" style="Object-fit: contain;"/>
+  <!-- </span> -->
+   <!-- <img src='http://lorempixel.com/1000/600/city/1' alt="Loading Project..." class="picWidth" style="Object-fit: contain;"/> -->
+
 
      <!-- {{project.pimg}} -->
      <!-- {{sproj.pname}} -->
-
-     <span *ngFor="let pin of projpins" class="icon icon-pin-6" style="position: absolute;"
-           [style.left.%]=pin.x [style.top.%]=pin.y [style.color] = pin.color
+     <!-- userProjects?.data -->
+     <span *ngFor="let pin of projpins?.data" class="icon icon-pin-6" style="position: absolute;"
+           [style.left.%]=pin.pinx [style.top.%]=pin.piny [style.color]=pin.color
            [class.selected]="pin === selectedPin"
            (mouseenter)="PinHover($event)"
            (mouseleave)="PinHover($event)"
@@ -94,7 +98,7 @@
 
       <div class="pinSpecification pinProjectMark">
          <ul>
-           <li><a href="javasript:;" onclick="return false;" data-toggle="modal" data-target="#static" ><span>&nbsp;</span></a></li>
+           <li><a onclick="return false;" data-toggle="modal" data-target="#static" ><span>&nbsp;</span></a></li>
            <li><a href="javasript:" onclick="return false;" data-toggle="modal" data-target="#static2"><span class="cameraMovieBg">&nbsp;</span></a></li>
            <li><a href="javasript:;"><span class="chartBg">&nbsp;</span></a></li>
            <li><a href="javasript:;"><span class="recrodBg">&nbsp;</span></a></li>
@@ -114,7 +118,7 @@
  <div id="static" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="true" style="display: none;">
    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
    <div class="modal-body">
-     <p>Would you like to continue with some arbitrary task?</p>
+     <!-- <p>Would you like to continue with some arbitrary task?</p> -->
      <div id="gallery" style="display:none;">
 
        <img alt="Image 1 Title" src="images/uploadPic/upload-pic-1.jpg"

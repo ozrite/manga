@@ -7,13 +7,15 @@ import 'rxjs/add/observable/timer';
 import { Pin } from './pin';
 // import { MYPINS } from './mock-pins';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/observable/throw';
 
 
 @Injectable()
 export class PinService {
 
   private headers = new Headers({'Content-Type': 'application/json'});
-  private pinsUrl = '/app/pins.json';  // URL to web api
+  // private pinsUrl = '/app/pins.json';  // URL to web api
+  private pinsUrl = 'http://192.241.209.229/v1/project/36/pin/';
 
   constructor(private http: Http) { }
 
@@ -24,8 +26,8 @@ export class PinService {
   //              .then(response => response.json().data as Pin[])
   //              .catch(this.handleError);
   // }
-  getPins() {
-      return this.http.get(this.pinsUrl).map((res:Response) => res.json());
+  getPins(pid: number) {
+      return this.http.get("http://192.241.209.229/v1/project/"+pid+"/pin/").map((res:Response) => res.json());
       // return this.http.get('https://jsonplaceholder.typicode.com/posts')
       //    .toPromise()
       //    .then(response => response.json())
@@ -51,12 +53,13 @@ export class PinService {
   //   .catch(this.handleError);
   // }
 
-  createPin(name: string, x:number, y:number, color:string) {
+  createPin(pid: number, name: string, x:number, y:number, color:string) {
       let headers = new Headers({'Content-Type': 'application/json'});
       let options = new RequestOptions({headers: headers});
-      let body = JSON.stringify({name: name, x: x, y: y, color: color});
+      let body = JSON.stringify({name: name, pinx: x, piny: y, color: color});
+
       // Note: This is only an example. The following API call will fail because there is no actual API to talk to.
-      return this.http.post(this.pinsUrl, body, headers).map((res:Response) => res.json());
+      return this.http.post('http://584ed4b67ba93b12001db56a.mockapi.io/api/v1/pin/', body, headers).map((res:Response) => res.json());
   }
 
   // updating a pin

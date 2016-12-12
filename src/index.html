@@ -13,15 +13,27 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
   <link href="styles/styles.css" rel="stylesheet" type="text/css" />
   <link href="styles/pins-styles.css" rel="stylesheet" type="text/css" />
+  <script
+			  src="https://code.jquery.com/jquery-3.1.1.min.js"
+			  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+			  crossorigin="anonymous"></script>
   <!-- <script type="text/javascript" src="js/jquery-1.9.1.js"></script> -->
   <!-- for unit gallery -->
-  <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
-  <script type='text/javascript' src='unitegallery/dist/js/unitegallery.min.js'></script>
+  <!-- <script type='text/javascript' src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script> -->
+  <!-- <script type='text/javascript' src='unitegallery/dist/js/unitegallery.min.js'></script>
   <script src='unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js' type='text/javascript'></script>
 
   <link rel='stylesheet' href='unitegallery/dist/css/unite-gallery.css' type='text/css' />
   <script type='text/javascript' src='unitegallery/dist/themes/default/ug-theme-default.js'></script>
-  <link rel='stylesheet' href='unitegallery/dist/themes/default/ug-theme-default.css' type='text/css' />
+  <link rel='stylesheet' href='unitegallery/dist/themes/default/ug-theme-default.css' type='text/css' /> -->
+
+  <!-- Include Unite Gallery core files -->
+	<script src='unitegallery/dist/js/unitegallery.min.js' type='text/javascript'  ></script>
+	<link  href='unitegallery/dist/css/unite-gallery.css' rel='stylesheet' type='text/css' />
+
+	<!-- include Unite Gallery Theme Files -->
+
+	<script src='unitegallery/dist/themes/tilesgrid/ug-theme-tilesgrid.js' type='text/javascript'></script>
 
 
 
@@ -39,17 +51,16 @@
             tile_width: 118,						//tile width
             tile_height: 100,						//tile height
             tile_enable_border:false,
+            // gallery_debug_errors:true
 
           });
-
-
 
           jQuery("#videogallery").unitegallery({
             gallery_theme: "tilesgrid",
             // tile_enable_icons:false,
             tile_width: 118,						//tile width
             tile_height: 100,						//tile height
-            tile_enable_border:false,
+            tile_enable_border:false
 
           });
         });

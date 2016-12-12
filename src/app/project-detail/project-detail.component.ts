@@ -22,6 +22,8 @@ import { Pin } from '../pin';
 import { PinService } from '../pin.service';
 import { Project } from '../project';
 import { ProjectService } from '../project.service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 // import {ModalModule} from "ng2-modal";
 
 
@@ -58,14 +60,16 @@ export class ProjectDetailComponent implements OnInit {
   pin: Pin; //declaring a pin property
   // pin2 = new Pin; //declaring a pin property
   pin1 = new Pin; // used to update the pin
-  selectedPin: Pin; // for the pin which is elected on click
+  // selectedPin: Pin; // for the pin which is elected on click
+  public selectedPin;
 
  //**************************Project related variable/property declarations****************
 
   pid : number;
   // project = new Project;
   // userproj: Project[] = []; //project pins to display
-  sproj = new Project;
+  // sproj = new Project;
+  public sproj;
 
   //***************************** functions below *************************************
 
@@ -73,6 +77,7 @@ export class ProjectDetailComponent implements OnInit {
      private el:ElementRef, private route: ActivatedRoute, private location: Location) {
 
       this.pid = route.snapshot.params['pid'];
+      // alert(this.pid);
 
 
 
@@ -83,8 +88,8 @@ export class ProjectDetailComponent implements OnInit {
     this.selectedPin = pin;
     console.log("Pin id is :" + this.selectedPin.id +
            ", name :" + this.selectedPin.name +
-           ", x :" + this.selectedPin.x +
-           ", y :" + this.selectedPin.y +
+           ", x :" + this.selectedPin.pinx +
+           ", y :" + this.selectedPin.piny +
            ", color :" + this.selectedPin.color );
 
     // alert("Pin id is :" + this.selectedPin.id +
@@ -95,62 +100,151 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   // get all pins of a project
-  getPins(): void {
-    this.pinService.getPins().then(pins => this.projpins = pins);
+  // getPins(): void {
+  //   this.pinService.getPins().then(pins => this.projpins = pins);
+  // }
+  getAllPins() {
+    this.pinService.getPins(this.pid).subscribe(
+      // the first argument is a function which runs on success
+      // data => { console.log(data);},
+      data => { this.projpins = data},
+      // the second argument is a function which runs on error
+      err => console.error(err),
+      // the third argument is a function which runs on completion
+      () => console.log('done loading pins')
+    );
+    // this._demoService.getFoods()
+    //   .then(projects => console.info(projects));
+  }
+  // adding a pin into the project
+  // addPin(name: string, x:number, y:number, color:string): void {
+  //   // name = name.trim();
+  //   // if (!name) { return; }
+  //   this.pinService.create(name, x, y, color)
+  //     .then(projpin => {
+  //       this.projpins.push(this.projpin);
+  //       // this.projpin = null;
+  //     });
+  // }
+  addPin(name: string, x:number, y:number, color:string) {
+    // let food = {name: name};
+    this.pinService.createPin(this.pid, name, x, y, color).subscribe(
+       data => {
+         // refresh the list
+         this.getAllPins();
+         return true;
+       },
+       error => {
+         console.error("Error Creating Pin!");
+         return Observable.throw(error);
+       }
+    );
   }
 
-  // adding a pin into the project
-  addPin(name: string, x:number, y:number, color:string): void {
-    // name = name.trim();
-    // if (!name) { return; }
-    this.pinService.create(name, x, y, color)
-      .then(projpin => {
-        this.projpins.push(this.projpin);
-        // this.projpin = null;
-      });
-  }
 
   //updating a pin and then saving its data
-  save(): void {
+  // save(): void {
+  //   this.pin1.id = 8;
+  //   this.pin1.name = "new";
+  //   this.pin1.x = 50;
+  //   this.pin1.y = 50;
+  //   this.pin1.color = "white";
+  //
+  //   this.pinService.update(this.pin1)
+  //      .then(() => this.goBack());
+  // }
+
+  savePin(name: string, x:number, y:number, color:string) {
+    // let pin = {name: name};
     this.pin1.id = 8;
     this.pin1.name = "new";
     this.pin1.x = 50;
     this.pin1.y = 50;
     this.pin1.color = "white";
 
-    this.pinService.update(this.pin1)
-       .then(() => this.goBack());
+    this.pinService.updatePin(this.pin1).subscribe(
+       data => {
+         // refresh the list
+         this.getAllPins();
+         return true;
+       },
+       error => {
+         console.error("Error saving food!");
+         return Observable.throw(error);
+       }
+    );
   }
+
+
 
   //go back function
   goBack(): void {
     this.location.back();
   }
   // delete pin function
-  delete(pin: Pin): void {
+  // delete(pin: Pin): void {
+  //   if(pin){
+  //
+  //   }else{
+  //     pin = this.selectedPin;
+  //   }
+  //
+  //   this.pinService
+  //       .delete(pin.id)
+  //       .then(() => {
+  //         this.projpins = this.projpins.filter(h => h !== pin);
+  //         if (this.selectedPin === pin) { this.selectedPin = null; }
+  //       });
+  //
+  //   this.rightPanelStyle = {'display':'none'};
+  //   this.RightMenuActive = false;
+  // }
+
+  delete(pin: Pin) {
     if(pin){
 
     }else{
       pin = this.selectedPin;
     }
-
-    this.pinService
-        .delete(pin.id)
-        .then(() => {
-          this.projpins = this.projpins.filter(h => h !== pin);
-          if (this.selectedPin === pin) { this.selectedPin = null; }
-        });
-
-    this.rightPanelStyle = {'display':'none'};
-    this.RightMenuActive = false;
+    if (confirm("Are you sure you want to delete this " + pin.id + "?")) {
+      this.pinService.deletePin(pin.id).subscribe(
+         data => {
+           // refresh the list
+           this.getAllPins();
+           return true;
+         },
+         error => {
+           console.error("Error deleting food!");
+           return Observable.throw(error);
+         }
+      );
+      this.rightPanelStyle = {'display':'none'};
+      this.RightMenuActive = false;
+    }
   }
+
+
 
   // ngOnInit function. call any functions inside to load  when the view of component is called first time
   ngOnInit(): void {
     //first get projectdetails from the url parameter
-    this.route.params
-      .switchMap((params: Params) => this.projectService.getProject(+params['pid']))
-      .subscribe(project => this.sproj = project);
+    // this.route.params
+    //   .switchMap((params: Params) => this.projectService.getProject(+params['pid']))
+    //   .subscribe(project => this.sproj = project);
+
+
+        this.projectService.getProject(this.pid).subscribe(
+          // the first argument is a function which runs on success
+          // data => { console.log(data);},
+          data => { this.sproj = data},
+          // the second argument is a function which runs on error
+          err => console.error(err),
+          // the third argument is a function which runs on completion
+          () => console.log('done loading single project')
+        );
+        // this._demoService.getFoods()
+        //   .then(projects => console.info(projects));
+
 
     //   this.route.params
     //  .switchMap((params: Params) => this.pinService.getPin(+params['id']))
@@ -164,7 +258,7 @@ export class ProjectDetailComponent implements OnInit {
 
 
     //after project detail, get this project pins
-    this.getPins(); //get all pins of the  project to display
+    this.getAllPins(); //get all pins of the  project to display
 
 
 
@@ -254,7 +348,9 @@ export class ProjectDetailComponent implements OnInit {
             this.selectedPin = null;  //setting the selectedPin to null if not clicked on pin
             this.addPin("Pin100",percentX,percentY,"black");
             // this.projpins = this.projpins.slice();
-            this.getPins();
+
+            // this.getAllPins();
+
             // this.projpins.push("Pin100",this.leftX,this.topY,"black");
             // this.projpins.push(this.leftX,this.topY,"black");
             // this.projpin.name = 'Pin100';

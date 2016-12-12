@@ -98,7 +98,7 @@
             <div *ngFor="let proj of userProjects?.data" class="col-lg-4 col-md-4 projectItem">
             	<div class="itemBoundry">
                     <div class="projectImg">
-                        <a [routerLink]="['/project-detail', proj.id]"><img src='http://lorempixel.com/400/250/city/1' alt="Place Name" /></a>
+                        <a [routerLink]="['/project-detail', proj.id]"><img [src]=proj.imagePath alt="Place Name" /></a>
                     </div>
                     <div class="projectDesc">
                         <h2 class="projTitle"><a [routerLink]="['/project-detail', proj.id]">{{proj.name}}</a></h2>
