@@ -1,3 +1,4 @@
+
 <div class="mainNav">
    <div class="container">
      <div class="row"><!--row-->
@@ -83,12 +84,13 @@
       <div class="pinSpecification">
           <ul>
               <li><a (click)="save()" class="active" href="javasript:;" onclick='return false;'>Edit</a></li>
-              <li><a href="javasript:;" onclick='return false;'>Lock</a></li>
+              <li><a href="javasript:;" (click)="scrollLeft();" onclick='return false;'>Lock</a></li>
               <li><a href="javasript:;" (click)="delete(pin);" onclick="return false;">Delete</a></li>
           </ul>
       </div>
 
      </div>
+     <!-- right panel    -->
      <!-- left panel    -->
      <div class="leftClickPanel"
       (mouseenter)="MenuEvent($event)"
@@ -108,131 +110,15 @@
       </div>
 
      </div>
-
+     <!-- left panel    -->
 
 
  </div>
  <!-- projectpins -->
 
- <!-- video gallery old one -->
- <div id="static2" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="true" style="display: none;">
-   <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
-   <div class="modal-body">
-     <p>this is video gallery</p>
-     <div id="videogallery" style="display:none;">
-
-     <div data-type="youtube"
-        data-videoid="M2-sponIRGM"
-        data-title="GoPro Demo"
-        data-description="by Go Pro"></div>
-
-     <div data-type="youtube"
-         data-videoid="7SDrjwtfKMk"
-         data-title="GoPro Demo"
-         data-description="by Go Pro"></div>
-
-     <div data-type="youtube"
-         data-videoid="qOgZJJmLfhA"
-         data-title="GoPro Demo"
-         data-description="by Go Pro"></div>
-
-     <div data-type="youtube"
-         data-videoid="jfqKObTVyHE"
-         data-title="GoPro Demo"
-         data-description="by Go Pro"></div>
-
-     <div data-type="youtube"
-        data-videoid="hzb6uI7xRA8"
-        data-title="GoPro Demo"
-        data-description="by Go Pro"></div>
-
-
-      <div data-type="youtube"
-         data-videoid="KaT9lEyqzU0"
-         data-title="GoPro Demo"
-         data-description="by Go Pro"></div>
-
-      <div data-type="youtube"
-          data-videoid="ssc5vRxvuk4"
-          data-title="GoPro Demo"
-          data-description="by Go Pro"></div>
-
-
-
-      <div data-type="youtube"
-           data-videoid="jDgeABMDuiU"
-           data-title="GoPro Demo"
-           data-description="by Go Pro"></div>
-
-
-      <div data-type="youtube"
-          data-videoid="UOeZCNIAUvc"
-          data-title="GoPro Demo"
-          data-description="by Go Pro"></div>
-
-      <div data-type="youtube"
-           data-videoid="0pHFJELNKZk"
-           data-title="GoPro Demo"
-           data-description="by Go Pro"></div>
-
-
-      <!-- audio file       -->
-      <img alt="Html5 Video"
-      src="images/uploadPic/upload-pic-2.jpg"
-      data-type="html5video"
-      data-image="images/uploadPic/upload-pic-2.jpg"
-      data-videomp4="https://www.dropbox.com/s/okdhnuwk4es97ea/khayaldropbox.mp3?dl=1"
-      data-description="This is html5 6666666666 audio demo played by mediaelement2 player">
-
-
-
-      <img alt="Html5 Video"
-      src="images/uploadPic/upload-pic-3.jpg"
-      data-type="html5video"
-      data-image="images/uploadPic/upload-pic-3.jpg"
-      data-videomp4="https://www.dropbox.com/s/3m375bb6y4acf4e/sawaal.mp4?dl=1"
-      data-description="This is html5 audio demo played by mediaelement2 player">
-
-      <!-- <img alt="Html5 Video"
-      src="images/uploadPic/upload-pic-4.jpg"
-      data-type="html5video"
-      data-image="images/uploadPic/upload-pic-4.jpg"
-      data-videomp4="years.ogg"
-      data-description="This is html5 audio demo played by mediaelement2 player"> -->
-
-
-
-
-       <!-- <div data-type="vimeo"
-          data-videoid="112361221"
-          data-thumb="thumbs-preview/image01.jpg"
-          data-title="Solus"
-          data-description="Solus movie"></div>
-
-       <div data-type="html5video"
-          data-image="http://video-js.zencoder.com/oceans-clip.png"
-          data-videoogv="http://video-js.zencoder.com/oceans-clip.ogv"
-          data-videowebm="http://video-js.zencoder.com/oceans-clip.webm"
-          data-videomp4="http://video-js.zencoder.com/oceans-clip.mp4"
-            data-title="Birds"
-            data-description="html5 video description"></div>
-
-       <div data-type="wistia"
-          data-videoid="o9q402a8ns"
-          data-title="DIY Video Studio"
-          data-description="wistia video description"></div> -->
-
-     </div>
-   </div>
-   <div class="modal-footer">
-     <button type="button" data-dismiss="modal" class="btn btn-default">Cancel</button>
-     <button type="button" data-dismiss="modal" class="btn btn-primary">Continue Task</button>
-   </div>
- </div>
- <!-- end video gallery old one-->
-
 
   <!-- Image Gallery-->
+
   	<div id="image_gal" class="modal fade" tabindex="-1" data-backdrop="static" data-keyboard="false" style="display: none;">
           <div class="row addProject"><!--Row-->
               <div class="uploadProject">
@@ -444,6 +330,7 @@
                   </div>
               </div>
           </div><!--Row-->
+
       </div>
   <!-- Image Gallery-->
 
@@ -1071,7 +958,9 @@
 
 
 
-
+  <div class="" id="my-div" style="background-color:yellow; border:2px solid green; height:200px; width:200px; position:absolute;">
+    this is a new div
+  </div>
 
 
 

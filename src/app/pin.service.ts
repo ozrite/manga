@@ -56,8 +56,18 @@ export class PinService {
   createPin(pid: number, name: string, x:number, y:number, color:string) {
       let headers = new Headers({'Content-Type': 'application/json'});
       let options = new RequestOptions({headers: headers});
-      let body = JSON.stringify({name: name, pinx: x, piny: y, color: color});
-        
+      let body = JSON.stringify({name: name, pinx: x, piny: y, color: color, description: 'newPin', pinShapeId: 1});
+
+      // { pin creation json
+      //    "name":"randomName",
+      //    "color":"ORANGE",
+      //    "pinx":15.3455,
+      //    "piny":58.9876,
+      //    "description":"seventh pin drop.",
+      //    "pinShapeId":1
+      // }
+
+      // http://192.241.209.229/v1/project/'+pid+'/pin
       // http://584ed4b67ba93b12001db56a.mockapi.io/api/v1/pin/
       // Note: This is only an example. The following API call will fail because there is no actual API to talk to.
       return this.http.post('http://192.241.209.229/v1/project/'+pid+'/pin', body, headers).map((res:Response) => res.json());

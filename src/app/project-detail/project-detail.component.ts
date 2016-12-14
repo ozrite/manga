@@ -26,7 +26,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 // import {ModalModule} from "ng2-modal";
 
-
+//declaring jquery var to use jquery in the code
+declare var jQuery:any;
 
 @Component({
   templateUrl: './project-detail.component.html',
@@ -260,6 +261,44 @@ export class ProjectDetailComponent implements OnInit {
     //after project detail, get this project pins
     this.getAllPins(); //get all pins of the  project to display
 
+    jQuery("#image-gallery").unitegallery({
+      gallery_theme: "tilesgrid",
+      tile_enable_icons:false,
+      tile_width: 114,						//tile width
+      tile_height: 100,						//tile height
+      tile_enable_border:false,
+      grid_num_rows:10000,
+      grid_space_between_cols: 10,			//space between columns
+      // grid_space_between_rows: 20			//space between rows
+      // gallery_debug_errors:true
+
+    });
+
+    jQuery("#video-gallery").unitegallery({
+      gallery_theme: "tilesgrid",
+      // tile_enable_icons:false,
+      tile_width: 114,						//tile width
+      tile_height: 100,						//tile height
+      tile_enable_border:false,
+      grid_num_rows:10000,
+      grid_space_between_cols: 10,			//space between columns
+      // grid_space_between_rows: 20			//space between rows
+      // gallery_debug_errors:true
+    });
+
+    jQuery("#audio-gallery").unitegallery({
+      gallery_theme: "tilesgrid",
+      // tile_enable_icons:false,
+      tile_width: 114,						//tile width
+      tile_height: 100,						//tile height
+      tile_enable_border:false,
+      grid_num_rows:10000,
+      grid_space_between_cols: 10,			//space between columns
+      // grid_space_between_rows: 20			//space between rows
+      // gallery_debug_errors:true
+
+    });
+
 
 
     // this.route.params
@@ -402,6 +441,18 @@ export class ProjectDetailComponent implements OnInit {
     }
 
   }//end detectRightMouseClick function bracket
+
+
+  scrollLeft() {
+
+        // jQuery('#my-div').animate({scrollLeft: 100}, 500);
+        jQuery('#my-div').animate({left: "+=500px"});
+        jQuery('#my-div').animate({top: "-=300px"});
+        // jQuery('#my-div').hide();
+        // document.getElementById('my-div').style.display=='block';
+        // alert("hello");
+
+    }
 
 
 
