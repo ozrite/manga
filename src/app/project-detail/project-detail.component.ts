@@ -35,6 +35,7 @@ declare var jQuery:any;
   .selected {
     text-shadow: 0 0 8px red;
   }
+  #upload_form .modal-dialog  {width:500px;}
   `],
   providers: [PinService, ProjectService]
 
@@ -170,7 +171,7 @@ export class ProjectDetailComponent implements OnInit {
          return true;
        },
        error => {
-         console.error("Error saving food!");
+         console.error("Error updating pin!");
          return Observable.throw(error);
        }
     );
@@ -215,7 +216,7 @@ export class ProjectDetailComponent implements OnInit {
            return true;
          },
          error => {
-           console.error("Error deleting food!");
+           console.error("Error deleting Pin!");
            return Observable.throw(error);
          }
       );

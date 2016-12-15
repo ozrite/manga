@@ -70,7 +70,7 @@ export class PinService {
       // http://192.241.209.229/v1/project/'+pid+'/pin
       // http://584ed4b67ba93b12001db56a.mockapi.io/api/v1/pin/
       // Note: This is only an example. The following API call will fail because there is no actual API to talk to.
-      return this.http.post('http://192.241.209.229/v1/project/'+pid+'/pin', body, headers).map((res:Response) => res.json());
+      return this.http.post('http://192.241.209.229/v1/project/'+pid+'/pin', body, options).map((res:Response) => res.json());
   }
 
   // updating a pin

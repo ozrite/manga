@@ -101,6 +101,93 @@
   </script> -->
 
   <script>
+  //my dropbox token: qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L
+  // chamelon tech token:QOMAUaZsAgAAAAAAAAAAH7IQ6ehF4ceVh2SQfpB2W9jvN0DB6VES6sfDevdpUjtJ
+
+
+  // curl -X POST https://content.dropboxapi.com/2/files/upload \
+  //     --header "Authorization: Bearer <get access token>" \
+  //     --header "Dropbox-API-Arg: {\"path\": \"/Homework/math/Matrices.txt\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" \
+  //     --header "Content-Type: application/octet-stream" \
+  //     --data-binary @local_file.txt
+
+  // curl -X POST https://api.dropboxapi.com/2/files/create_folder \
+  //   --header "Authorization: Bearer <get access token>" \
+  //   --header "Content-Type: application/json" \
+  //   --data "{\"path\": \"/Homework/math\",\"autorename\": false}"
+
+    /* Script written by Adam Khoury @ DevelopPHP.com */
+    /* Video Tutorial: http://www.youtube.com/watch?v=EraNFJiY0Eg */
+    // function _(el){
+    //   return document.getElementById(el);
+    // }
+    // function createFolder(){
+    //   // var file = _("file1").files[0];
+    //   // alert(file.name+" | "+file.size+" | "+file.type);
+    //   // var formdata = new FormData();
+    //   // formdata.append("file1", file);
+    //   var xhr = new XMLHttpRequest();
+    //   // xhr.upload.addEventListener("progress", progressHandler, false);
+    //   xhr.addEventListener("load", completeHandler, false);
+    //   xhr.addEventListener("error", errorHandler, false);
+    //   xhr.addEventListener("abort", abortHandler, false);
+    //
+    //   xhr.open('POST', 'https://api.dropboxapi.com/2/files/create_folder');
+    //   xhr.setRequestHeader('Authorization', 'Bearer ' + 'qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L');
+    //   xhr.setRequestHeader('Content-Type', 'application/json');
+    //   xhr.setRequestHeader( JSON.stringify({
+    //     path: '/mynewtemp',
+    //     // mode: 'add',
+    //     // autorename: true,
+    //     // mute: false
+    //   }));
+    //
+    //   xhr.send;
+    //   // ajax.open("POST", "file_upload_parser.php");
+    //   // ajax.send(formdata);
+    // }
+    // function progressHandler(event){
+    //   _("loaded_n_total").innerHTML = "Uploaded "+event.loaded+" bytes of "+event.total;
+    //   var percent = (event.loaded / event.total) * 100;
+    //   _("progressBar").value = Math.round(percent);
+    //   _("status").innerHTML = Math.round(percent)+"% uploaded... please wait";
+    // }
+    // function completeHandler(event){
+    //   _("status").innerHTML = event.target.responseText;
+    //   _("progressBar").value = 0;
+    // }
+    // function errorHandler(event){
+    //   _("status").innerHTML = "Upload Failed";
+    // }
+    // function abortHandler(event){
+    //   _("status").innerHTML = "Upload Aborted";
+    // }
+
+
+  </script>
+
+
+
+
+
+
+  <script>
+  //my dropbox token: qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L
+  //my dropbox token: qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L
+  // chamelon tech token:QOMAUaZsAgAAAAAAAAAAH7IQ6ehF4ceVh2SQfpB2W9jvN0DB6VES6sfDevdpUjtJ
+
+
+  // curl -X POST https://content.dropboxapi.com/2/files/upload \
+  //     --header "Authorization: Bearer <get access token>" \
+  //     --header "Dropbox-API-Arg: {\"path\": \"/Homework/math/Matrices.txt\",\"mode\": \"add\",\"autorename\": true,\"mute\": false}" \
+  //     --header "Content-Type: application/octet-stream" \
+  //     --data-binary @local_file.txt
+
+  // curl -X POST https://api.dropboxapi.com/2/files/create_folder \
+  //   --header "Authorization: Bearer <get access token>" \
+  //   --header "Content-Type: application/json" \
+  //   --data "{\"path\": \"/Homework/math\",\"autorename\": false}"
+
     /* Script written by Adam Khoury @ DevelopPHP.com */
     /* Video Tutorial: http://www.youtube.com/watch?v=EraNFJiY0Eg */
     function _(el){
@@ -118,10 +205,10 @@
       xhr.addEventListener("abort", abortHandler, false);
 
       xhr.open('POST', 'https://content.dropboxapi.com/2/files/upload');
-      xhr.setRequestHeader('Authorization', 'Bearer ' + 'qUpnyBsW7tAAAAAAAAAAHeQerauNB_yPXrq-docw-tHLZ6ByggR1enJ3wf5Q_k3L');
+      xhr.setRequestHeader('Authorization', 'Bearer ' + 'QOMAUaZsAgAAAAAAAAAAH7IQ6ehF4ceVh2SQfpB2W9jvN0DB6VES6sfDevdpUjtJ');
       xhr.setRequestHeader('Content-Type', 'application/octet-stream');
       xhr.setRequestHeader('Dropbox-API-Arg', JSON.stringify({
-        path: '/' +  file.name,
+        path: '/Apps/pinwalk/temp/' +  file.name,
         mode: 'add',
         autorename: true,
         mute: false
@@ -140,6 +227,7 @@
     function completeHandler(event){
       _("status").innerHTML = event.target.responseText;
       _("progressBar").value = 0;
+      alert(event.target.responseJson);
     }
     function errorHandler(event){
       _("status").innerHTML = "Upload Failed";
@@ -148,6 +236,7 @@
       _("status").innerHTML = "Upload Aborted";
     }
   </script>
+
 
   <script>
     System.import('app')

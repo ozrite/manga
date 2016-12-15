@@ -945,7 +945,8 @@
                       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-6">
                           <div class="createBtns">
                               <ul class="list-inline text-right">
-                                  <li><a class="custmBtn blueBtn" href="javascript:;">Upload Image</a></li>
+                                  <li><a class="custmBtn blueBtn" href="javascript:;" onclick="return false;" data-toggle="modal" data-target="#upload_form">Upload Image</a></li>
+                                  <!-- <li><a data-toggle="modal" data-target="#upload_form" class="btn btn-danger"> Show Me The Modal In Front</a></li> -->
                               </ul>
                           </div>
                       </div>
@@ -955,12 +956,86 @@
   <!-- file gallery -->
 
 
+<!--
+  <div id="upload_form" class="modal fade" tabindex="-1" data-keyboard="false" style="display: none;" style="background-color:white; width:500px; z-index: 2000 !important;">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 
+      <h2>HTML5 File Upload Progress Bar Tutorial</h2>
+      <form id="upload_form" enctype="multipart/form-data" method="post">
+        <input type="file" name="file1" id="file1"><br>
+        <input type="button" value="Upload File" onclick="uploadFile()">
+        <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+        <h3 id="status"></h3>
+        <p id="loaded_n_total"></p>
+      </form>
 
-
-  <div class="" id="my-div" style="background-color:yellow; border:2px solid green; height:200px; width:200px; position:absolute;">
-    this is a new div
+    <div class="modal-footer">
+      <button type="button" data-dismiss="modal" class="btn">Close</button>
+      <button type="button" class="btn btn-primary">Ok</button>
+    </div>
   </div>
+</div> -->
+
+<!-- <div id="upload_form" class="modal fade" tabindex="-1" style="display: none; background-color:white;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h4 class="modal-title">Upload your media/file</h4>
+  </div>
+  <div class="modal-body">
+    <h2>HTML5 File Upload Progress Bar Tutorial</h2>
+    <form id="upload_form" enctype="multipart/form-data" method="post">
+      <input type="file" name="file1" id="file1"><br>
+      <input type="button" value="Upload File" onclick="uploadFile()">
+      <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+      <h3 id="status"></h3>
+      <p id="loaded_n_total"></p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn btn-default">Close</button>
+    <button type="button" class="btn btn-primary">Ok</button>
+  </div>
+</div> -->
+
+
+
+
+<div class="modal fade" id="upload_form" tabindex="-1" role="dialog" aria-labelledby="modal_title" aria-hidden="true">
+  <div class="modal-dialog"> <!-- property to determine size -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="modal_title">Some modal</h4>
+      </div>
+      <div class="modal-body">
+        <h2>HTML5 File Upload Progress Bar Tutorial</h2>
+        <form id="upload_form" enctype="multipart/form-data" method="post">
+          <input type="file" name="file1" id="file1"><br>
+          <input type="button" value="Upload File" onclick="uploadFile()">
+          <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
+          <h3 id="status"></h3>
+          <p id="loaded_n_total"></p>
+        </form>
+        <!-- modal content -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="some_button" data-loading-text="Loading...">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- this is just a test div to work with jquery -->
+  <!-- <div class="" id="my-div" style="background-color:yellow; border:2px solid green; height:200px; width:200px; position:absolute;">
+    this is a new div
+  </div> -->
 
 
 
@@ -975,14 +1050,14 @@
  </audio> -->
 
  <!-- file upload program -->
- <h2>HTML5 File Upload Progress Bar Tutorial</h2>
+ <!-- <h2>HTML5 File Upload Progress Bar Tutorial</h2>
  <form id="upload_form" enctype="multipart/form-data" method="post">
    <input type="file" name="file1" id="file1"><br>
    <input type="button" value="Upload File" onclick="uploadFile()">
    <progress id="progressBar" value="0" max="100" style="width:300px;"></progress>
    <h3 id="status"></h3>
    <p id="loaded_n_total"></p>
- </form>
+ </form> -->
 
 
  <div class="container">
