@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "pins";
+  src:url("../pins-fonts/pins.eot");
+  src:url("../pins-fonts/pins.eot?#iefix") format("embedded-opentype"),
+    url("../pins-fonts/pins.woff") format("woff"),
+    url("../pins-fonts/pins.ttf") format("truetype"),
+    url("../pins-fonts/pins.svg#pins") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "pins" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "pins" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  margin-right:7px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size:4vw;
+}
+
+.icon-pin-1:before {
+  content: "\61";
+}
+.icon-pin-2:before {
+  content: "\62";
+}
+.icon-pin-3:before {
+  content: "\63";
+}
+.icon-pin-6:before {
+  content: "\64";
+}
+.icon-pin-5:before {
+  content: "\65";
+}
+.icon-pin-4:before {
+  content: "\66";
+}
+.icon-color-1{
+  color:#dd4128;
+}
